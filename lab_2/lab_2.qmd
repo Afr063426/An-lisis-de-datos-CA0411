@@ -1,0 +1,165 @@
+---
+title: Laboratorio 2 CA0411
+date: today
+date-format: short
+author: Joshua Cervantes Artavia
+theme: Cerulean
+format:
+  html:
+    embed-resources: true
+---
+
+
+# Descripción del laboratorio 
+
+En este laboratorio se va buscar diseñar nuestro propio ACP normado de tal forma que lo podamos estimar a "mano".
+
+Recordemos que en este caso que la forma de obtener el ACP era diagonalizando o obtiniendo los autovarlores y autovectores de la matriz de correlaciones.
+Más adelante se va ver una versión más general de nuestro ACP. 
+
+```{python}
+#Se carga el modulo
+from cod.acp import ACP_normado
+import pandas as pd
+import numpy as np 
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+
+# Carga de datos
+
+Una vez más vamos a usar nuestra tabla de datos de casas de Boston. 
+
+```{python}
+from ISLP import load_data # Modulo con los datos
+
+# Carga de datos
+df_boston = load_data("Boston")
+```
+
+En este caso recordamos que la variable chas es categorica y este ACP es solo para variables numéricas entonces la vamos a eliminar.
+
+
+```{python}
+#Se procede a eliminar la variable
+df_boston = df_boston.drop(["chas"], axis =1 )
+```
+
+# Uso del módulo
+
+
+Primeramente debemos crear el objeto y en este caso podemos observar que el algoritmo 
+```{python}
+#Primero vamos a tener que estandarizar los datos 
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+#Lo ajustamos a los datos
+scaler.fit(df_boston)
+
+#Transformamos los datos
+
+df_boston_std =  pd.DataFrame(scaler.transform(df_boston), columns=df_boston.columns) 
+
+
+
+df_boston_std
+```
+
+Se puede observar que en este caso se tiene que los datos han sido estandarizados.
+
+
+Ahora estos datos se pasan al ACP normado
+
+```{python}
+#Se genera el objeto
+acp_normado = ACP_normado(df_boston_std)
+
+
+```
+
+
+
+```{python}
+#Vemos los datos
+acp_normado.data
+```
+
+Se puede observar que efectivamente se estan cargando los datos estandarizados.
+
+
+```{python}
+#Vemos la metrica
+acp_normado.M
+```
+
+En este caso se puede observar que estamos usando la metrica definida por la identidad. Esto dado que estamos trabajando con datos estandarizados.
+
+
+```{python}
+acp_normado.mean()
+
+```
+
+
+Se puede observar que se obtiene el promedio por columna tal y como se quería.
+
+```{python}
+acp_normado.pca()
+
+```
+
+En este caso este atributo no va retornar nada, pero podríamos hacer una impresión indicando que se ejecuto de forma satisfactoria. 
+
+Se procede a ver la varianza explicada por las primerad dos componentes principales.
+
+```{python}
+acp_normado.explained_variance(2)
+```
+
+En este caso se puede observar que cerca del 69% de la inercia se encuentra conservada en las primeras dos ejes principales.
+
+Se procede a ver las primeras componentes principales.
+
+
+Primero se ven los autovalores y autovectores
+```{python}
+acp_normado.eig_vals
+
+```
+
+Se tienen los autovalores y todos son positivos como se esperaba, entre más alto el valor es mucho menor.
+
+```{python}
+acp_normado.eig_vecs
+
+```
+
+
+
+Ahora se procede a estimar la componentes principales.
+```{python}
+acp_normado.principal_components(2)
+
+```
+
+
+Se grafican y se puede observar que existe una gran cantidad de datos los cuales se encuentran agrupados, pero existen casos como el 257 que se aleja bastante del gran cúmulo de datos. En este caso no podemos intuir mucho, pero en los ejercicios que vamos a ver en clase se puede obtener mayor cantidad de jugetes. Este caso es meramente ilustrativo.
+
+```{python}
+acp_normado.plot()
+
+
+```
+
+
+
+Ahora se procede a hacer el círculo de correlaciones
+```{python}
+acp_normado.circle_correlation()
+```
+
+
+En este caso se puede observar que `crim` es una variable que se ve claramente reflejada en la primera componente, pero no así en la segunda componente. Además, lo mismo sucede con los `rax`, `rad` y `indus` que podríamos decir que se encuentran claramente correlacionadas. Existen otras variables que se encuentran menos correlacionadas con estas comentadas anteriormente.
