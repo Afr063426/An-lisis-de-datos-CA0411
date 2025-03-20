@@ -10,24 +10,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-class ACP_general:
-    
-    
-    #Se innicia el objeto en este caso ingresamos lo que se necesita en la nube de puntos
-    def __init__(self, data, M):
-        super().__init__(self, data)
-        self.set_M(M)
+
     
 
     
-class ACP_normado(ACP_general):
+class ACP_normado():
 
     #Se define el objeto y se indican aquellas cosas que el objeto necesita
     #para poder funcionar
-
-    def __init__(self, data):
-        super().__init__(self, data) # Sea asignan los datos a la clase
-
 
     def __init__(self, data):
         self.__data = data
@@ -78,11 +68,11 @@ class ACP_normado(ACP_general):
         self.__data_centered = (self.__data - self.__data.mean())
         
         # En este caso se estimara la matriz de correlaciones
-        self.cov = 1/ self.__data.shape[0] * np.dot(self.__data_centered.T, self.__data_centered)
+        self.cov_matrix = 1/ self.__data.shape[0] * np.dot(self.__data_centered.T, self.__data_centered)
 
 
         # Se procede a estimar los autovalores y autovectores
-        self.eig_vals, self.eig_vecs = np.linalg.eig(np.dot(self.cov, self.__M))
+        self.eig_vals, self.eig_vecs = np.linalg.eig(np.dot(self.cov_matrix, self.__M))
 
     
     # Se procede a estimar la varianza explicada
@@ -105,6 +95,7 @@ class ACP_normado(ACP_general):
     
         for i, txt in enumerate(self.__data.index):
             plt.annotate(txt, (self.components[i, eje_x-1], self.components[i, eje_y-1]))
+            
         plt.xlabel(f'Componente Principal {eje_x}')
         plt.ylabel(f'Componente Principal {eje_y}')
         plt.title('Componentes Principales')
@@ -150,3 +141,10 @@ class ACP_normado(ACP_general):
         
 
 
+class ACP_general(ACP_normado):
+    
+    
+    #Se innicia el objeto en este caso ingresamos lo que se necesita en la nube de puntos
+    def __init__(self, data, M):
+        super().__init__(self, data)
+        self.set_M(M)
