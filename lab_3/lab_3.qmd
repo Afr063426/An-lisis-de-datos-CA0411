@@ -1,0 +1,227 @@
+---
+title: Laboratorio 3 CA0411
+date: today
+date-format: short
+author: Joshua Cervantes Artavia
+theme: Cerulean
+format:
+  html:
+    embed-resources: true
+---
+
+
+# Descripción del laboratorio 
+
+En este laboratorio se va buscar diseñar nuestro propio ACP normado de tal forma que lo podamos estimar a "mano".
+
+Recordemos que en este caso que la forma de obtener el ACP era diagonalizando o obtiniendo los autovarlores y autovectores de la matriz de correlaciones.
+Más adelante se va ver una versión más general de nuestro ACP. 
+
+```{python}
+#Se carga el modulo
+from cod.acp import AFC
+import pandas as pd
+import numpy as np 
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+
+En este caso se programó el método AFC para el caso de las nubes de perfiles fila y se procede a obtener las componentes a partir de las fórmulas de transición.
+
+# Ejemplo de colegios
+
+Se va ver el caso de los colegios y la relación con la escogencia del colegio.
+
+
+Se procede a cargar los datos
+```{python}
+df_colegios = pd.read_excel("./data/lab_3.xlsx", index_col=[0])
+df_colegios
+```
+
+
+Procedemos a generar el objeto a partir de clase que programamos
+```{python}
+afc_colegios = AFC(df_colegios)
+
+df_colegios.sum(axis =1)
+```
+
+
+
+
+Vemos las matrices $M = D^{-1}_{y}$ y $D = D_{x}$
+```{python}
+afc_colegios.M
+```
+
+```{python}
+afc_colegios.D
+```
+
+
+Se procede a realizar el AFC
+```{python}
+afc_colegios.afc()
+
+```
+
+
+En este caso se obtiene que los autovalores no incluyen al 1, esto es porque fue eliminado en el código para evitar confusiones, pero si se dejara se observaría que es 1 y además el autovector es el centro de gravedad.
+
+```{python}
+afc_colegios.eig_vals
+
+```
+
+Se puede observar que se tienen 3 autovectores. 
+
+
+```{python}
+
+afc_colegios.eig_vecs
+```
+
+Se estima la varianza explicada por las primeras componentes
+
+```{python}
+afc_colegios.explained_variance(3)
+
+        
+```
+
+
+Se estiman los primeros tres componentes principales
+```{python}
+
+afc_colegios.principal_components(3)
+
+
+
+```
+
+Se proceden a ejecutar las fórmulas de transición
+```{python}
+afc_colegios.transicion()
+
+```
+
+
+
+Al ejecutar las constribución del primer individuo en la primera componente se puede observar que este es menor 1 tal y como se espera.
+```{python}
+afc_colegios.contribucion_pf(i = 1,component = 1)
+
+```
+
+
+Al realizar los mismo en las componentes filas se observa lo mismo.
+```{python}
+afc_colegios.contribucion_col(j = 1,component = 1)
+
+```
+
+
+Al graficar podemos observar el comportamiento que se tiene en el libro que justamente nos muestra el alejamiento de los extranjeros y los colegios con bachillerato por madurez. En este caso se encuentra que los ejes están invertidos, pero se concluye lo mismo. Esto puede suceder dependiendo del lenguaje que estén usando.
+
+```{python}
+afc_colegios.plot_coords(axis_x = 1, axis_y = 2)
+
+
+```
+
+
+
+# Ejemplo de gasolina
+
+Se va ver el ejemplo de la gasolina regular comprada por marca y tipo de vehículo
+```{python}
+df_gasolina = pd.read_excel("./data/lab_3.xlsx", sheet_name = "GASOLINA", index_col=[0])
+df_gasolina
+```
+
+
+Procedemos a generar el objeto
+```{python}
+afc_gasolina = AFC(df_gasolina)
+
+df_gasolina.sum(axis =1)
+```
+
+
+
+Se procede a ejecutar el AFC
+
+```{python}
+afc_gasolina.afc()
+
+```
+
+Una vez más se observa que todos los autovalores son menores que 1.
+
+```{python}
+afc_gasolina.eig_vals
+
+```
+
+
+```{python}
+
+afc_gasolina.eig_vecs
+```
+
+En este caso se obtiene la inercia explicada por las primeras 5 componentes.
+
+```{python}
+afc_gasolina.explained_variance(5)
+
+        
+```
+
+
+Se conservan solo tres ya que vamos a graficar en el primer plano factorial.
+```{python}
+
+afc_gasolina.principal_components(3)
+
+
+
+```
+
+
+
+Se ejecutan las fórmulas de transición.
+```{python}
+afc_gasolina.transicion()
+
+```
+
+Se obtiene la contribución que efectivamente es menor que 1
+
+```{python}
+afc_gasolina.contribucion_pf(i = 1,component = 1)
+
+```
+
+Los mismo para los perfiles columna
+
+```{python}
+afc_gasolina.contribucion_col(j = 1,component = 1)
+
+```
+
+
+Se procede a hacer el primer plano factorial, en este caso se puede observar que existe un comportamiento interesanete donde la mayoría de las marcas se ubican al lado izquierdo mientras las de las derecha se ubican a las derecha, por lo que puede intuirse que tiene un consumo diferente de gasolina y además etán más relacionadas con mtp al menos el resto de marcas. o tipo (otro tipo) se ubica realmente alejado de los demás.
+
+```{python}
+afc_gasolina.plot_coords(axis_x = 1, axis_y = 2)
+
+
+```
+
+
+
+
+
+
