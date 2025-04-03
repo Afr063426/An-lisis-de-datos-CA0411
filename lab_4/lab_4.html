@@ -8,7 +8,7 @@
 
 <meta name="author" content="Joshua Cervantes Artavia">
 
-<title>Laboratorio 3 CA0411</title>
+<title>Laboratorio 4 CA0411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3093,7 +3093,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Laboratorio 3 CA0411</h1>
+<h1 class="title">Laboratorio 4 CA0411</h1>
 </div>
 
 
@@ -3147,7 +3147,7 @@ $ pip install prince</code></pre>
 <p>Se descarga Python 3 desde el siguiente link <a href="https://www.python.org/downloads/release/python-3132/">Python3</a>. Se añade Python a las variables del ambiente ver siguiente enlace <a href="https://www.youtube.com/watch?v=oa7YR5GpJ0A">añadir python windows</a>. En la consola se instalan los paquetes.</p>
 <pre class="{console}"><code>$ python -m pip install prince</code></pre>
 <p>Se cargan los paquetes</p>
-<div id="1f89c1b6" class="cell" data-execution_count="1">
+<div id="f4798eaa" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -3160,7 +3160,7 @@ $ pip install prince</code></pre>
 <h1>Ejemplo de el colegio y escogencia de la universidad</h1>
 <section id="carga-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="carga-de-datos">Carga de datos</h2>
-<div id="e2fdf19a" class="cell" data-execution_count="2">
+<div id="ce61ac3b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_colegios <span class="op">=</span> pd.read_excel(<span class="st">&quot;./data/lab_3.xlsx&quot;</span>, index_col<span class="op">=</span>[<span class="dv">0</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_colegios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -3234,7 +3234,7 @@ $ pip install prince</code></pre>
 </div>
 </div>
 <p>Procedemos a generar el objeto a partir de clase que programamos</p>
-<div id="232643c1" class="cell" data-execution_count="3">
+<div id="4673be38" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ca <span class="op">=</span> prince.CA(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  n_components<span class="op">=</span><span class="dv">3</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">3</span>,</span>
@@ -3254,7 +3254,7 @@ $ pip install prince</code></pre>
 </section>
 <section id="vemos-los-autovalores" class="level2">
 <h2 class="anchored" data-anchor-id="vemos-los-autovalores">Vemos los autovalores</h2>
-<div id="29040ecc" class="cell" data-execution_count="4">
+<div id="bb3ea590" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ca.eigenvalues_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -3303,7 +3303,7 @@ $ pip install prince</code></pre>
 </section>
 <section id="coordenadas" class="level2">
 <h2 class="anchored" data-anchor-id="coordenadas">Coordenadas</h2>
-<div id="ec5fcf7d" class="cell" data-execution_count="5">
+<div id="a57b51d3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ca.row_coordinates(df_colegios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -3367,7 +3367,7 @@ $ pip install prince</code></pre>
 </div>
 </div>
 </div>
-<div id="2a21ea07" class="cell" data-execution_count="6">
+<div id="dacf2a75" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ca.column_coordinates(df_colegios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -3416,7 +3416,7 @@ $ pip install prince</code></pre>
 </section>
 <section id="visualización" class="level2">
 <h2 class="anchored" data-anchor-id="visualización">Visualización</h2>
-<div id="48d171e7" class="cell" data-execution_count="7">
+<div id="712dd09d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ca.plot(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df_colegios,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x_component=0,</span></span>
@@ -3434,22 +3434,22 @@ $ pip install prince</code></pre>
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-#altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3.vega-embed {
+#altair-viz-42bde32146984e639899d2828be030c4.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3.vega-embed details,
-#altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3.vega-embed details summary {
+#altair-viz-42bde32146984e639899d2828be030c4.vega-embed details,
+#altair-viz-42bde32146984e639899d2828be030c4.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3"></div>
+<div id="altair-viz-42bde32146984e639899d2828be030c4"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3") {
-      outputDiv = document.getElementById("altair-viz-d10e20ab30ca4b5f9fc2f397a8a183a3");
+    if (outputDiv.id !== "altair-viz-42bde32146984e639899d2828be030c4") {
+      outputDiv = document.getElementById("altair-viz-42bde32146984e639899d2828be030c4");
     }
 
     const paths = {
@@ -3504,101 +3504,101 @@ position: relative;
 </section>
 <section id="contribuciones" class="level2">
 <h2 class="anchored" data-anchor-id="contribuciones">Contribuciones</h2>
-<div id="f462f3c8" class="cell" data-execution_count="8">
+<div id="7f6b77cd" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ca.row_contributions_.style.<span class="bu">format</span>(<span class="st">&#39;</span><span class="sc">{:.0%}</span><span class="st">&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <style type="text/css">
 </style>
 
-<table id="T_6c393" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_230e4" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th"> </th>
-<th id="T_6c393_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
-<th id="T_6c393_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
-<th id="T_6c393_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
+<th id="T_230e4_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_230e4_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+<th id="T_230e4_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_6c393_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">diurno-oficial</td>
-<td id="T_6c393_row0_col0" class="data row0 col0">5%</td>
-<td id="T_6c393_row0_col1" class="data row0 col1">0%</td>
-<td id="T_6c393_row0_col2" class="data row0 col2">13%</td>
+<td id="T_230e4_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">diurno-oficial</td>
+<td id="T_230e4_row0_col0" class="data row0 col0">5%</td>
+<td id="T_230e4_row0_col1" class="data row0 col1">0%</td>
+<td id="T_230e4_row0_col2" class="data row0 col2">13%</td>
 </tr>
 <tr class="even">
-<td id="T_6c393_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">nocturno-oficial</td>
-<td id="T_6c393_row1_col0" class="data row1 col0">27%</td>
-<td id="T_6c393_row1_col1" class="data row1 col1">0%</td>
-<td id="T_6c393_row1_col2" class="data row1 col2">24%</td>
+<td id="T_230e4_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">nocturno-oficial</td>
+<td id="T_230e4_row1_col0" class="data row1 col0">27%</td>
+<td id="T_230e4_row1_col1" class="data row1 col1">0%</td>
+<td id="T_230e4_row1_col2" class="data row1 col2">24%</td>
 </tr>
 <tr class="odd">
-<td id="T_6c393_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">diurno-privado</td>
-<td id="T_6c393_row2_col0" class="data row2 col0">2%</td>
-<td id="T_6c393_row2_col1" class="data row2 col1">13%</td>
-<td id="T_6c393_row2_col2" class="data row2 col2">44%</td>
+<td id="T_230e4_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">diurno-privado</td>
+<td id="T_230e4_row2_col0" class="data row2 col0">2%</td>
+<td id="T_230e4_row2_col1" class="data row2 col1">13%</td>
+<td id="T_230e4_row2_col2" class="data row2 col2">44%</td>
 </tr>
 <tr class="even">
-<td id="T_6c393_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">nocturno-privado</td>
-<td id="T_6c393_row3_col0" class="data row3 col0">2%</td>
-<td id="T_6c393_row3_col1" class="data row3 col1">0%</td>
-<td id="T_6c393_row3_col2" class="data row3 col2">6%</td>
+<td id="T_230e4_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">nocturno-privado</td>
+<td id="T_230e4_row3_col0" class="data row3 col0">2%</td>
+<td id="T_230e4_row3_col1" class="data row3 col1">0%</td>
+<td id="T_230e4_row3_col2" class="data row3 col2">6%</td>
 </tr>
 <tr class="odd">
-<td id="T_6c393_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">bachillerato por madurez</td>
-<td id="T_6c393_row4_col0" class="data row4 col0">63%</td>
-<td id="T_6c393_row4_col1" class="data row4 col1">1%</td>
-<td id="T_6c393_row4_col2" class="data row4 col2">7%</td>
+<td id="T_230e4_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">bachillerato por madurez</td>
+<td id="T_230e4_row4_col0" class="data row4 col0">63%</td>
+<td id="T_230e4_row4_col1" class="data row4 col1">1%</td>
+<td id="T_230e4_row4_col2" class="data row4 col2">7%</td>
 </tr>
 <tr class="even">
-<td id="T_6c393_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">colegio-extranjero</td>
-<td id="T_6c393_row5_col0" class="data row5 col0">1%</td>
-<td id="T_6c393_row5_col1" class="data row5 col1">85%</td>
-<td id="T_6c393_row5_col2" class="data row5 col2">7%</td>
+<td id="T_230e4_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">colegio-extranjero</td>
+<td id="T_230e4_row5_col0" class="data row5 col0">1%</td>
+<td id="T_230e4_row5_col1" class="data row5 col1">85%</td>
+<td id="T_230e4_row5_col2" class="data row5 col2">7%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="b3efc5bd" class="cell" data-execution_count="9">
+<div id="ed584fc9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ca.column_contributions_.style.<span class="bu">format</span>(<span class="st">&#39;</span><span class="sc">{:.0%}</span><span class="st">&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <style type="text/css">
 </style>
 
-<table id="T_3e274" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_4994e" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th"> </th>
-<th id="T_3e274_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
-<th id="T_3e274_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
-<th id="T_3e274_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
+<th id="T_4994e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_4994e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+<th id="T_4994e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_3e274_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">UCR</td>
-<td id="T_3e274_row0_col0" class="data row0 col0">14%</td>
-<td id="T_3e274_row0_col1" class="data row0 col1">12%</td>
-<td id="T_3e274_row0_col2" class="data row0 col2">0%</td>
+<td id="T_4994e_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">UCR</td>
+<td id="T_4994e_row0_col0" class="data row0 col0">14%</td>
+<td id="T_4994e_row0_col1" class="data row0 col1">12%</td>
+<td id="T_4994e_row0_col2" class="data row0 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_3e274_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">ITCR</td>
-<td id="T_3e274_row1_col0" class="data row1 col0">1%</td>
-<td id="T_3e274_row1_col1" class="data row1 col1">77%</td>
-<td id="T_3e274_row1_col2" class="data row1 col2">13%</td>
+<td id="T_4994e_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">ITCR</td>
+<td id="T_4994e_row1_col0" class="data row1 col0">1%</td>
+<td id="T_4994e_row1_col1" class="data row1 col1">77%</td>
+<td id="T_4994e_row1_col2" class="data row1 col2">13%</td>
 </tr>
 <tr class="odd">
-<td id="T_3e274_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">UNA</td>
-<td id="T_3e274_row2_col0" class="data row2 col0">13%</td>
-<td id="T_3e274_row2_col1" class="data row2 col1">8%</td>
-<td id="T_3e274_row2_col2" class="data row2 col2">71%</td>
+<td id="T_4994e_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">UNA</td>
+<td id="T_4994e_row2_col0" class="data row2 col0">13%</td>
+<td id="T_4994e_row2_col1" class="data row2 col1">8%</td>
+<td id="T_4994e_row2_col2" class="data row2 col2">71%</td>
 </tr>
 <tr class="even">
-<td id="T_3e274_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">UNED</td>
-<td id="T_3e274_row3_col0" class="data row3 col0">71%</td>
-<td id="T_3e274_row3_col1" class="data row3 col1">3%</td>
-<td id="T_3e274_row3_col2" class="data row3 col2">17%</td>
+<td id="T_4994e_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">UNED</td>
+<td id="T_4994e_row3_col0" class="data row3 col0">71%</td>
+<td id="T_4994e_row3_col1" class="data row3 col1">3%</td>
+<td id="T_4994e_row3_col2" class="data row3 col2">17%</td>
 </tr>
 </tbody>
 </table>
@@ -3607,7 +3607,7 @@ position: relative;
 </section>
 <section id="coseno-similaridades" class="level2">
 <h2 class="anchored" data-anchor-id="coseno-similaridades">Coseno similaridades</h2>
-<div id="c07bbd32" class="cell" data-execution_count="10">
+<div id="e3d0e08a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ca.row_cosine_similarities(df_colegios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -3671,7 +3671,7 @@ position: relative;
 </div>
 </div>
 </div>
-<div id="7a42ff77" class="cell" data-execution_count="11">
+<div id="3fac5bba" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ca.column_cosine_similarities(df_colegios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -3722,7 +3722,7 @@ position: relative;
 <section id="ejemplo-de-globos-análisis-de-correspondencias-múltiples" class="level1">
 <h1>Ejemplo de globos (Análisis de correspondencias múltiples)</h1>
 <p>Se procede a cargar los datos. Si se está usando Mac puede ser necesario instalar certificados de acceso esto se logra de yendo <code>/Applications/Python 3.X</code> y se debe ejecutar el archivo <code>Install Certificates.command</code></p>
-<div id="f6c08ba8" class="cell" data-execution_count="12">
+<div id="d38e245d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://archive.ics.uci.edu/ml/machine-learning-databases/balloons/adult+stretch.data&#39;</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X.columns <span class="op">=</span> [<span class="st">&#39;Color&#39;</span>, <span class="st">&#39;Size&#39;</span>, <span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Age&#39;</span>, <span class="st">&#39;Inflated&#39;</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3793,7 +3793,7 @@ position: relative;
 </div>
 <p>Vemos que es una tabla donde viene el color del globo, el tamaño, la acción, la edad y si está inflado.</p>
 <p>Veamos que entonces tenemos solo variables cualitativas. Si aplicamos el comando describe obtenemos lo siguiente</p>
-<div id="bcdacd81" class="cell" data-execution_count="13">
+<div id="4b2ec899" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -3858,17 +3858,17 @@ position: relative;
 <li>Y la mayoría se encuentran desinflados.</li>
 </ul>
 <p>Se procede a generar el objeto para el análisis de correspondecias múltiples.</p>
-<div id="b0fe0cec" class="cell" data-execution_count="14">
+<div id="933d0505" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mca <span class="op">=</span> prince.MCA(n_components<span class="op">=</span><span class="dv">3</span>, correction<span class="op">=</span> <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Procedemos a ajustar el modelo</p>
-<div id="091a7e00" class="cell" data-execution_count="15">
+<div id="b2e51910" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mca <span class="op">=</span> mca.fit(X) <span class="co"># same as calling ca.fs_r(1)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mca = mca.transform(X)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lo anterior son la coordenadas de los perfiles fila.</p>
 <p>También podemos hacer</p>
-<div id="caecbd33" class="cell" data-execution_count="16">
+<div id="fffbfcf6" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mca.row_coordinates(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -3887,115 +3887,115 @@ position: relative;
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>0.705387</td>
-<td>-8.355262e-15</td>
+<td>1.227151e-14</td>
 <td>0.758639</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>-0.386586</td>
-<td>-5.190627e-15</td>
+<td>9.457155e-15</td>
 <td>0.626063</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>-0.386586</td>
-<td>-8.739632e-15</td>
+<td>1.110716e-14</td>
 <td>0.626063</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>-0.852014</td>
-<td>-6.357996e-15</td>
+<td>9.353971e-15</td>
 <td>0.562447</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.783539</td>
-<td>6.333333e-01</td>
+<td>-6.333333e-01</td>
 <td>0.130201</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>0.783539</td>
-<td>6.333333e-01</td>
+<td>-6.333333e-01</td>
 <td>0.130201</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
 <td>-0.308434</td>
-<td>6.333333e-01</td>
+<td>-6.333333e-01</td>
 <td>-0.002375</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
 <td>-0.308434</td>
-<td>6.333333e-01</td>
+<td>-6.333333e-01</td>
 <td>-0.002375</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">8</td>
 <td>-0.773862</td>
-<td>6.333333e-01</td>
+<td>-6.333333e-01</td>
 <td>-0.065991</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">9</td>
 <td>0.783539</td>
-<td>-6.333333e-01</td>
+<td>6.333333e-01</td>
 <td>0.130201</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">10</td>
 <td>0.783539</td>
-<td>-6.333333e-01</td>
+<td>6.333333e-01</td>
 <td>0.130201</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">11</td>
 <td>-0.308434</td>
-<td>-6.333333e-01</td>
+<td>6.333333e-01</td>
 <td>-0.002375</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">12</td>
 <td>-0.308434</td>
-<td>-6.333333e-01</td>
+<td>6.333333e-01</td>
 <td>-0.002375</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">13</td>
 <td>-0.773862</td>
-<td>-6.333333e-01</td>
+<td>6.333333e-01</td>
 <td>-0.065991</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">14</td>
 <td>0.861691</td>
-<td>5.093336e-15</td>
+<td>-8.000956e-15</td>
 <td>-0.498238</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">15</td>
 <td>0.861691</td>
-<td>5.093336e-15</td>
+<td>-8.000956e-15</td>
 <td>-0.498238</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">16</td>
 <td>-0.230282</td>
-<td>8.257971e-15</td>
+<td>-1.081531e-14</td>
 <td>-0.630814</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">17</td>
 <td>-0.230282</td>
-<td>4.708966e-15</td>
+<td>-9.165300e-15</td>
 <td>-0.630814</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">18</td>
 <td>-0.695710</td>
-<td>7.090602e-15</td>
+<td>-1.091849e-14</td>
 <td>-0.694429</td>
 </tr>
 </tbody>
@@ -4005,7 +4005,7 @@ position: relative;
 </div>
 </div>
 <p>Si quisieramos ver las coordenadas de los perfiles columna podemos hacer</p>
-<div id="f597e497" class="cell" data-execution_count="17">
+<div id="2ae72502" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mca.column_coordinates(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -4024,61 +4024,61 @@ position: relative;
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Color__PURPLE</td>
 <td>0.117308</td>
-<td>-6.892024e-01</td>
+<td>6.892024e-01</td>
 <td>-0.641270</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Color__YELLOW</td>
 <td>-0.130342</td>
-<td>7.657805e-01</td>
+<td>-7.657805e-01</td>
 <td>0.712523</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Size__LARGE</td>
 <td>0.117308</td>
-<td>6.892024e-01</td>
+<td>-6.892024e-01</td>
 <td>-0.641270</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Size__SMALL</td>
 <td>-0.130342</td>
-<td>-7.657805e-01</td>
+<td>7.657805e-01</td>
 <td>0.712523</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Action__DIP</td>
 <td>-0.853864</td>
-<td>-1.165014e-15</td>
+<td>-1.795590e-16</td>
 <td>-0.079340</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Action__STRETCH</td>
 <td>0.620992</td>
-<td>9.749139e-16</td>
+<td>-4.639006e-17</td>
 <td>0.057702</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Age__ADULT</td>
 <td>0.620992</td>
-<td>-1.800085e-15</td>
+<td>1.241815e-15</td>
 <td>0.057702</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Age__CHILD</td>
 <td>-0.853864</td>
-<td>2.688880e-15</td>
+<td>-1.915975e-15</td>
 <td>-0.079340</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Inflated__F</td>
 <td>-0.731466</td>
-<td>6.233062e-16</td>
+<td>-6.700946e-16</td>
 <td>-0.054731</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Inflated__T</td>
 <td>1.253942</td>
-<td>-7.961000e-16</td>
+<td>9.052121e-16</td>
 <td>0.093825</td>
 </tr>
 </tbody>
@@ -4089,7 +4089,7 @@ position: relative;
 </div>
 <section id="análisis-de-la-inercia" class="level2">
 <h2 class="anchored" data-anchor-id="análisis-de-la-inercia">Análisis de la inercia</h2>
-<div id="4b57e612" class="cell" data-execution_count="18">
+<div id="74cef8e3" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mca.eigenvalues_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
@@ -4139,7 +4139,7 @@ position: relative;
 <section id="gráfico" class="level2">
 <h2 class="anchored" data-anchor-id="gráfico">Gráfico</h2>
 <p>Podemos realizar la proyección de una manera sencilla de la siguiente manera</p>
-<div id="6de36b83" class="cell" data-execution_count="19">
+<div id="6540d55a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mca.plot(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    X,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x_component=0,</span></span>
@@ -4157,22 +4157,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="19">
 
 <style>
-#altair-viz-c686bbe891264ac39aeba62b1079ca16.vega-embed {
+#altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-c686bbe891264ac39aeba62b1079ca16.vega-embed details,
-#altair-viz-c686bbe891264ac39aeba62b1079ca16.vega-embed details summary {
+#altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0.vega-embed details,
+#altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-c686bbe891264ac39aeba62b1079ca16"></div>
+<div id="altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c686bbe891264ac39aeba62b1079ca16") {
-      outputDiv = document.getElementById("altair-viz-c686bbe891264ac39aeba62b1079ca16");
+    if (outputDiv.id !== "altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0") {
+      outputDiv = document.getElementById("altair-viz-c3fe9a90b5264be3a91b82bd1ab19dc0");
     }
 
     const paths = {
@@ -4220,7 +4220,7 @@ position: relative;
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-dd8fa0037b37ca26532c60a9aa49f917"}, "mark": {"type": "circle", "size": 50}, "encoding": {"color": {"field": "variable", "type": "nominal"}, "tooltip": [{"field": "variable", "type": "nominal"}, {"field": "value", "type": "nominal"}, {"field": "component 0", "type": "quantitative"}, {"field": "component 1", "type": "quantitative"}], "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}, "name": "view_2"}, {"data": {"name": "data-ffb726c2d8f2073068243a5f491d1aa3"}, "mark": {"type": "circle", "size": 0}, "encoding": {"color": {"field": "variable", "type": "nominal"}, "tooltip": [{"field": "variable", "type": "nominal"}, {"field": "value", "type": "nominal"}, {"field": "component 0", "type": "quantitative"}, {"field": "component 1", "type": "quantitative"}], "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}}, {"data": {"name": "data-ffb726c2d8f2073068243a5f491d1aa3"}, "mark": {"type": "text"}, "encoding": {"text": {"field": "label", "type": "nominal"}, "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}}], "params": [{"name": "param_2", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_2"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-dd8fa0037b37ca26532c60a9aa49f917": [{"component 0": 0.7053867996248329, "component 1": -8.35526243519182e-15, "component 2": 0.7586391105690962, "variable": "row", "value": "0", "label": 0}, {"component 0": -0.3865862994959901, "component 1": -5.190627385992986e-15, "component 2": 0.6260630816840007, "variable": "row", "value": "1", "label": 1}, {"component 0": -0.38658629949599016, "component 1": -8.739632060389422e-15, "component 2": 0.6260630816840036, "variable": "row", "value": "2", "label": 2}, {"component 0": -0.8520140574664051, "component 1": -6.3579961782100725e-15, "component 2": 0.5624474892356496, "variable": "row", "value": "3", "label": 3}, {"component 0": 0.7835387510478186, "component 1": 0.6333333333333315, "component 2": 0.1302006913491885, "variable": "row", "value": "4", "label": 4}, {"component 0": 0.7835387510478186, "component 1": 0.6333333333333315, "component 2": 0.1302006913491885, "variable": "row", "value": "5", "label": 5}, {"component 0": -0.3084343480730044, "component 1": 0.6333333333333346, "component 2": -0.002375337535907054, "variable": "row", "value": "6", "label": 6}, {"component 0": -0.30843434807300446, "component 1": 0.6333333333333312, "component 2": -0.002375337535904143, "variable": "row", "value": "7", "label": 7}, {"component 0": -0.7738621060434194, "component 1": 0.6333333333333335, "component 2": -0.06599092998425822, "variable": "row", "value": "8", "label": 8}, {"component 0": 0.7835387510478183, "component 1": -0.6333333333333349, "component 2": 0.13020069134917525, "variable": "row", "value": "9", "label": 9}, {"component 0": 0.7835387510478183, "component 1": -0.6333333333333349, "component 2": 0.13020069134917525, "variable": "row", "value": "10", "label": 10}, {"component 0": -0.30843434807300457, "component 1": -0.6333333333333317, "component 2": -0.0023753375359202725, "variable": "row", "value": "11", "label": 11}, {"component 0": -0.3084343480730046, "component 1": -0.6333333333333352, "component 2": -0.0023753375359173616, "variable": "row", "value": "12", "label": 12}, {"component 0": -0.7738621060434195, "component 1": -0.6333333333333329, "component 2": -0.06599092998427145, "variable": "row", "value": "13", "label": 13}, {"component 0": 0.861690702470804, "component 1": 5.093335550972071e-15, "component 2": -0.49823772787073245, "variable": "row", "value": "14", "label": 14}, {"component 0": 0.861690702470804, "component 1": 5.093335550972071e-15, "component 2": -0.49823772787073245, "variable": "row", "value": "15", "label": 15}, {"component 0": -0.23028239665001882, "component 1": 8.257970600170904e-15, "component 2": -0.630813756755828, "variable": "row", "value": "16", "label": 16}, {"component 0": -0.2302823966500189, "component 1": 4.708965925774468e-15, "component 2": -0.6308137567558251, "variable": "row", "value": "17", "label": 17}, {"component 0": -0.6957101546204338, "component 1": 7.090601807953817e-15, "component 2": -0.6944293492041791, "variable": "row", "value": "18", "label": 18}], "data-ffb726c2d8f2073068243a5f491d1aa3": [{"component 0": 0.11730760677191499, "component 1": -0.6892024376045051, "component 2": -0.6412704755837068, "variable": "column", "value": "Color__PURPLE", "label": "Color__PURPLE"}, {"component 0": -0.13034178530212764, "component 1": 0.7657804862272278, "component 2": 0.7125227506485634, "variable": "column", "value": "Color__YELLOW", "label": "Color__YELLOW"}, {"component 0": 0.11730760677191493, "component 1": 0.6892024376045175, "component 2": -0.641270475583694, "variable": "column", "value": "Size__LARGE", "label": "Size__LARGE"}, {"component 0": -0.1303417853021276, "component 1": -0.7657804862272416, "component 2": 0.7125227506485493, "variable": "column", "value": "Size__SMALL", "label": "Size__SMALL"}, {"component 0": -0.8538641988881541, "component 1": -1.1650136110193088e-15, "component 2": -0.07934001340795291, "variable": "column", "value": "Action__DIP", "label": "Action__DIP"}, {"component 0": 0.6209921446459303, "component 1": 9.749139371210241e-16, "component 2": 0.05770182793305706, "variable": "column", "value": "Action__STRETCH", "label": "Action__STRETCH"}, {"component 0": 0.6209921446459304, "component 1": -1.8000852757168956e-15, "component 2": 0.0577018279330588, "variable": "column", "value": "Age__ADULT", "label": "Age__ADULT"}, {"component 0": -0.8538641988881541, "component 1": 2.688879928872754e-15, "component 2": -0.07934001340795538, "variable": "column", "value": "Age__CHILD", "label": "Age__CHILD"}, {"component 0": -0.7314664035372918, "component 1": 6.233062188726602e-16, "component 2": -0.05473108398079353, "variable": "column", "value": "Inflated__F", "label": "Inflated__F"}, {"component 0": 1.253942406063929, "component 1": -7.960999687506111e-16, "component 2": 0.09382471539564663, "variable": "column", "value": "Inflated__T", "label": "Inflated__T"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-3635ba5f328b90e4a9eaf20d58045026"}, "mark": {"type": "circle", "size": 50}, "encoding": {"color": {"field": "variable", "type": "nominal"}, "tooltip": [{"field": "variable", "type": "nominal"}, {"field": "value", "type": "nominal"}, {"field": "component 0", "type": "quantitative"}, {"field": "component 1", "type": "quantitative"}], "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}, "name": "view_2"}, {"data": {"name": "data-64d63808a37876bfa1aad07ba71146ed"}, "mark": {"type": "circle", "size": 0}, "encoding": {"color": {"field": "variable", "type": "nominal"}, "tooltip": [{"field": "variable", "type": "nominal"}, {"field": "value", "type": "nominal"}, {"field": "component 0", "type": "quantitative"}, {"field": "component 1", "type": "quantitative"}], "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}}, {"data": {"name": "data-64d63808a37876bfa1aad07ba71146ed"}, "mark": {"type": "text"}, "encoding": {"text": {"field": "label", "type": "nominal"}, "x": {"axis": {"title": "component 0 \u2014 40.17%"}, "field": "component 0", "scale": {"zero": false}, "type": "quantitative"}, "y": {"axis": {"title": "component 1 \u2014 21.11%"}, "field": "component 1", "scale": {"zero": false}, "type": "quantitative"}}}], "params": [{"name": "param_2", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_2"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-3635ba5f328b90e4a9eaf20d58045026": [{"component 0": 0.7053867996248332, "component 1": 1.2271506824039936e-14, "component 2": 0.758639110569096, "variable": "row", "value": "0", "label": 0}, {"component 0": -0.38658629949599005, "component 1": 9.45715506228298e-15, "component 2": 0.6260630816840018, "variable": "row", "value": "1", "label": 1}, {"component 0": -0.3865862994959899, "component 1": 1.1107162773373678e-14, "component 2": 0.6260630816840032, "variable": "row", "value": "2", "label": 2}, {"component 0": -0.852014057466405, "component 1": 9.353970605601235e-15, "component 2": 0.5624474892356501, "variable": "row", "value": "3", "label": 3}, {"component 0": 0.7835387510478184, "component 1": -0.6333333333333312, "component 2": 0.13020069134919168, "variable": "row", "value": "4", "label": 4}, {"component 0": 0.7835387510478184, "component 1": -0.6333333333333312, "component 2": 0.13020069134919168, "variable": "row", "value": "5", "label": 5}, {"component 0": -0.30843434807300485, "component 1": -0.6333333333333341, "component 2": -0.002375337535902631, "variable": "row", "value": "6", "label": 6}, {"component 0": -0.3084343480730047, "component 1": -0.6333333333333324, "component 2": -0.0023753375359012708, "variable": "row", "value": "7", "label": 7}, {"component 0": -0.7738621060434198, "component 1": -0.6333333333333342, "component 2": -0.06599092998425438, "variable": "row", "value": "8", "label": 8}, {"component 0": 0.7835387510478187, "component 1": 0.6333333333333355, "component 2": 0.13020069134917134, "variable": "row", "value": "9", "label": 9}, {"component 0": 0.7835387510478187, "component 1": 0.6333333333333355, "component 2": 0.13020069134917134, "variable": "row", "value": "10", "label": 10}, {"component 0": -0.3084343480730046, "component 1": 0.6333333333333326, "component 2": -0.0023753375359229687, "variable": "row", "value": "11", "label": 11}, {"component 0": -0.3084343480730044, "component 1": 0.6333333333333343, "component 2": -0.0023753375359216087, "variable": "row", "value": "12", "label": 12}, {"component 0": -0.7738621060434195, "component 1": 0.6333333333333325, "component 2": -0.06599092998427471, "variable": "row", "value": "13", "label": 13}, {"component 0": 0.8616907024708039, "component 1": -8.00095629606859e-15, "component 2": -0.4982377278707331, "variable": "row", "value": "14", "label": 14}, {"component 0": 0.8616907024708039, "component 1": -8.00095629606859e-15, "component 2": -0.4982377278707331, "variable": "row", "value": "15", "label": 15}, {"component 0": -0.23028239665001943, "component 1": -1.0815308057825546e-14, "component 2": -0.6308137567558273, "variable": "row", "value": "16", "label": 16}, {"component 0": -0.23028239665001923, "component 1": -9.165300346734849e-15, "component 2": -0.630813756755826, "variable": "row", "value": "17", "label": 17}, {"component 0": -0.6957101546204343, "component 1": -1.0918492514507293e-14, "component 2": -0.694429349204179, "variable": "row", "value": "18", "label": 18}], "data-64d63808a37876bfa1aad07ba71146ed": [{"component 0": 0.11730760677191437, "component 1": 0.6892024376045006, "component 2": -0.6412704755837104, "variable": "column", "value": "Color__PURPLE", "label": "Color__PURPLE"}, {"component 0": -0.13034178530212653, "component 1": -0.7657804862272231, "component 2": 0.7125227506485677, "variable": "column", "value": "Color__YELLOW", "label": "Color__YELLOW"}, {"component 0": 0.11730760677191454, "component 1": -0.6892024376045213, "component 2": -0.6412704755836899, "variable": "column", "value": "Size__LARGE", "label": "Size__LARGE"}, {"component 0": -0.13034178530212676, "component 1": 0.7657804862272456, "component 2": 0.7125227506485449, "variable": "column", "value": "Size__SMALL", "label": "Size__SMALL"}, {"component 0": -0.8538641988881535, "component 1": -1.7955899375977274e-16, "component 2": -0.07934001340795269, "variable": "column", "value": "Action__DIP", "label": "Action__DIP"}, {"component 0": 0.6209921446459301, "component 1": -4.639005682637333e-17, "component 2": 0.05770182793305713, "variable": "column", "value": "Action__STRETCH", "label": "Action__STRETCH"}, {"component 0": 0.6209921446459304, "component 1": 1.2418145006217844e-15, "component 2": 0.05770182793305817, "variable": "column", "value": "Age__ADULT", "label": "Age__ADULT"}, {"component 0": -0.8538641988881539, "component 1": -1.915975196570646e-15, "component 2": -0.07934001340795416, "variable": "column", "value": "Age__CHILD", "label": "Age__CHILD"}, {"component 0": -0.7314664035372914, "component 1": -6.700945557688764e-16, "component 2": -0.05473108398079304, "variable": "column", "value": "Inflated__F", "label": "Inflated__F"}, {"component 0": 1.2539424060639286, "component 1": 9.052120973251074e-16, "component 2": 0.09382471539564614, "variable": "column", "value": "Inflated__T", "label": "Inflated__T"}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 </div>
@@ -4228,216 +4228,216 @@ position: relative;
 <section id="contribuciones-1" class="level2">
 <h2 class="anchored" data-anchor-id="contribuciones-1">Contribuciones</h2>
 <p>Se ve la contribución de las filas a las componentes mediante el siguiente comando.</p>
-<div id="09673448" class="cell" data-execution_count="20">
+<div id="d245ae65" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mca.row_contributions_.style.<span class="bu">format</span>(<span class="st">&#39;</span><span class="sc">{:.0%}</span><span class="st">&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <style type="text/css">
 </style>
 
-<table id="T_80f3a" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_390ec" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th"> </th>
-<th id="T_80f3a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
-<th id="T_80f3a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
-<th id="T_80f3a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
+<th id="T_390ec_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_390ec_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+<th id="T_390ec_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_80f3a_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_80f3a_row0_col0" class="data row0 col0">7%</td>
-<td id="T_80f3a_row0_col1" class="data row0 col1">0%</td>
-<td id="T_80f3a_row0_col2" class="data row0 col2">16%</td>
+<td id="T_390ec_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_390ec_row0_col0" class="data row0 col0">7%</td>
+<td id="T_390ec_row0_col1" class="data row0 col1">0%</td>
+<td id="T_390ec_row0_col2" class="data row0 col2">16%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_80f3a_row1_col0" class="data row1 col0">2%</td>
-<td id="T_80f3a_row1_col1" class="data row1 col1">0%</td>
-<td id="T_80f3a_row1_col2" class="data row1 col2">11%</td>
+<td id="T_390ec_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_390ec_row1_col0" class="data row1 col0">2%</td>
+<td id="T_390ec_row1_col1" class="data row1 col1">0%</td>
+<td id="T_390ec_row1_col2" class="data row1 col2">11%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
-<td id="T_80f3a_row2_col0" class="data row2 col0">2%</td>
-<td id="T_80f3a_row2_col1" class="data row2 col1">0%</td>
-<td id="T_80f3a_row2_col2" class="data row2 col2">11%</td>
+<td id="T_390ec_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_390ec_row2_col0" class="data row2 col0">2%</td>
+<td id="T_390ec_row2_col1" class="data row2 col1">0%</td>
+<td id="T_390ec_row2_col2" class="data row2 col2">11%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
-<td id="T_80f3a_row3_col0" class="data row3 col0">10%</td>
-<td id="T_80f3a_row3_col1" class="data row3 col1">0%</td>
-<td id="T_80f3a_row3_col2" class="data row3 col2">9%</td>
+<td id="T_390ec_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_390ec_row3_col0" class="data row3 col0">10%</td>
+<td id="T_390ec_row3_col1" class="data row3 col1">0%</td>
+<td id="T_390ec_row3_col2" class="data row3 col2">9%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
-<td id="T_80f3a_row4_col0" class="data row4 col0">8%</td>
-<td id="T_80f3a_row4_col1" class="data row4 col1">10%</td>
-<td id="T_80f3a_row4_col2" class="data row4 col2">0%</td>
+<td id="T_390ec_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_390ec_row4_col0" class="data row4 col0">8%</td>
+<td id="T_390ec_row4_col1" class="data row4 col1">10%</td>
+<td id="T_390ec_row4_col2" class="data row4 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
-<td id="T_80f3a_row5_col0" class="data row5 col0">8%</td>
-<td id="T_80f3a_row5_col1" class="data row5 col1">10%</td>
-<td id="T_80f3a_row5_col2" class="data row5 col2">0%</td>
+<td id="T_390ec_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_390ec_row5_col0" class="data row5 col0">8%</td>
+<td id="T_390ec_row5_col1" class="data row5 col1">10%</td>
+<td id="T_390ec_row5_col2" class="data row5 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
-<td id="T_80f3a_row6_col0" class="data row6 col0">1%</td>
-<td id="T_80f3a_row6_col1" class="data row6 col1">10%</td>
-<td id="T_80f3a_row6_col2" class="data row6 col2">0%</td>
+<td id="T_390ec_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_390ec_row6_col0" class="data row6 col0">1%</td>
+<td id="T_390ec_row6_col1" class="data row6 col1">10%</td>
+<td id="T_390ec_row6_col2" class="data row6 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
-<td id="T_80f3a_row7_col0" class="data row7 col0">1%</td>
-<td id="T_80f3a_row7_col1" class="data row7 col1">10%</td>
-<td id="T_80f3a_row7_col2" class="data row7 col2">0%</td>
+<td id="T_390ec_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_390ec_row7_col0" class="data row7 col0">1%</td>
+<td id="T_390ec_row7_col1" class="data row7 col1">10%</td>
+<td id="T_390ec_row7_col2" class="data row7 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
-<td id="T_80f3a_row8_col0" class="data row8 col0">8%</td>
-<td id="T_80f3a_row8_col1" class="data row8 col1">10%</td>
-<td id="T_80f3a_row8_col2" class="data row8 col2">0%</td>
+<td id="T_390ec_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_390ec_row8_col0" class="data row8 col0">8%</td>
+<td id="T_390ec_row8_col1" class="data row8 col1">10%</td>
+<td id="T_390ec_row8_col2" class="data row8 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
-<td id="T_80f3a_row9_col0" class="data row9 col0">8%</td>
-<td id="T_80f3a_row9_col1" class="data row9 col1">10%</td>
-<td id="T_80f3a_row9_col2" class="data row9 col2">0%</td>
+<td id="T_390ec_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_390ec_row9_col0" class="data row9 col0">8%</td>
+<td id="T_390ec_row9_col1" class="data row9 col1">10%</td>
+<td id="T_390ec_row9_col2" class="data row9 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
-<td id="T_80f3a_row10_col0" class="data row10 col0">8%</td>
-<td id="T_80f3a_row10_col1" class="data row10 col1">10%</td>
-<td id="T_80f3a_row10_col2" class="data row10 col2">0%</td>
+<td id="T_390ec_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
+<td id="T_390ec_row10_col0" class="data row10 col0">8%</td>
+<td id="T_390ec_row10_col1" class="data row10 col1">10%</td>
+<td id="T_390ec_row10_col2" class="data row10 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
-<td id="T_80f3a_row11_col0" class="data row11 col0">1%</td>
-<td id="T_80f3a_row11_col1" class="data row11 col1">10%</td>
-<td id="T_80f3a_row11_col2" class="data row11 col2">0%</td>
+<td id="T_390ec_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
+<td id="T_390ec_row11_col0" class="data row11 col0">1%</td>
+<td id="T_390ec_row11_col1" class="data row11 col1">10%</td>
+<td id="T_390ec_row11_col2" class="data row11 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
-<td id="T_80f3a_row12_col0" class="data row12 col0">1%</td>
-<td id="T_80f3a_row12_col1" class="data row12 col1">10%</td>
-<td id="T_80f3a_row12_col2" class="data row12 col2">0%</td>
+<td id="T_390ec_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
+<td id="T_390ec_row12_col0" class="data row12 col0">1%</td>
+<td id="T_390ec_row12_col1" class="data row12 col1">10%</td>
+<td id="T_390ec_row12_col2" class="data row12 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row13" class="row_heading level0 row13" data-quarto-table-cell-role="th">13</td>
-<td id="T_80f3a_row13_col0" class="data row13 col0">8%</td>
-<td id="T_80f3a_row13_col1" class="data row13 col1">10%</td>
-<td id="T_80f3a_row13_col2" class="data row13 col2">0%</td>
+<td id="T_390ec_level0_row13" class="row_heading level0 row13" data-quarto-table-cell-role="th">13</td>
+<td id="T_390ec_row13_col0" class="data row13 col0">8%</td>
+<td id="T_390ec_row13_col1" class="data row13 col1">10%</td>
+<td id="T_390ec_row13_col2" class="data row13 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row14" class="row_heading level0 row14" data-quarto-table-cell-role="th">14</td>
-<td id="T_80f3a_row14_col0" class="data row14 col0">10%</td>
-<td id="T_80f3a_row14_col1" class="data row14 col1">0%</td>
-<td id="T_80f3a_row14_col2" class="data row14 col2">7%</td>
+<td id="T_390ec_level0_row14" class="row_heading level0 row14" data-quarto-table-cell-role="th">14</td>
+<td id="T_390ec_row14_col0" class="data row14 col0">10%</td>
+<td id="T_390ec_row14_col1" class="data row14 col1">0%</td>
+<td id="T_390ec_row14_col2" class="data row14 col2">7%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row15" class="row_heading level0 row15" data-quarto-table-cell-role="th">15</td>
-<td id="T_80f3a_row15_col0" class="data row15 col0">10%</td>
-<td id="T_80f3a_row15_col1" class="data row15 col1">0%</td>
-<td id="T_80f3a_row15_col2" class="data row15 col2">7%</td>
+<td id="T_390ec_level0_row15" class="row_heading level0 row15" data-quarto-table-cell-role="th">15</td>
+<td id="T_390ec_row15_col0" class="data row15 col0">10%</td>
+<td id="T_390ec_row15_col1" class="data row15 col1">0%</td>
+<td id="T_390ec_row15_col2" class="data row15 col2">7%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row16" class="row_heading level0 row16" data-quarto-table-cell-role="th">16</td>
-<td id="T_80f3a_row16_col0" class="data row16 col0">1%</td>
-<td id="T_80f3a_row16_col1" class="data row16 col1">0%</td>
-<td id="T_80f3a_row16_col2" class="data row16 col2">11%</td>
+<td id="T_390ec_level0_row16" class="row_heading level0 row16" data-quarto-table-cell-role="th">16</td>
+<td id="T_390ec_row16_col0" class="data row16 col0">1%</td>
+<td id="T_390ec_row16_col1" class="data row16 col1">0%</td>
+<td id="T_390ec_row16_col2" class="data row16 col2">11%</td>
 </tr>
 <tr class="even">
-<td id="T_80f3a_level0_row17" class="row_heading level0 row17" data-quarto-table-cell-role="th">17</td>
-<td id="T_80f3a_row17_col0" class="data row17 col0">1%</td>
-<td id="T_80f3a_row17_col1" class="data row17 col1">0%</td>
-<td id="T_80f3a_row17_col2" class="data row17 col2">11%</td>
+<td id="T_390ec_level0_row17" class="row_heading level0 row17" data-quarto-table-cell-role="th">17</td>
+<td id="T_390ec_row17_col0" class="data row17 col0">1%</td>
+<td id="T_390ec_row17_col1" class="data row17 col1">0%</td>
+<td id="T_390ec_row17_col2" class="data row17 col2">11%</td>
 </tr>
 <tr class="odd">
-<td id="T_80f3a_level0_row18" class="row_heading level0 row18" data-quarto-table-cell-role="th">18</td>
-<td id="T_80f3a_row18_col0" class="data row18 col0">6%</td>
-<td id="T_80f3a_row18_col1" class="data row18 col1">0%</td>
-<td id="T_80f3a_row18_col2" class="data row18 col2">14%</td>
+<td id="T_390ec_level0_row18" class="row_heading level0 row18" data-quarto-table-cell-role="th">18</td>
+<td id="T_390ec_row18_col0" class="data row18 col0">6%</td>
+<td id="T_390ec_row18_col1" class="data row18 col1">0%</td>
+<td id="T_390ec_row18_col2" class="data row18 col2">14%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <p>Se ve la contribución de las columnas a las componentes mediante el siguiente comando.</p>
-<div id="fc417cf5" class="cell" data-execution_count="21">
+<div id="230db879" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mca.column_contributions_.style.<span class="bu">format</span>(<span class="st">&#39;</span><span class="sc">{:.0%}</span><span class="st">&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <style type="text/css">
 </style>
 
-<table id="T_88a9f" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_b1efd" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th"> </th>
-<th id="T_88a9f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
-<th id="T_88a9f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
-<th id="T_88a9f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
+<th id="T_b1efd_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_b1efd_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+<th id="T_b1efd_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_88a9f_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Color__PURPLE</td>
-<td id="T_88a9f_row0_col0" class="data row0 col0">0%</td>
-<td id="T_88a9f_row0_col1" class="data row0 col1">24%</td>
-<td id="T_88a9f_row0_col2" class="data row0 col2">23%</td>
+<td id="T_b1efd_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Color__PURPLE</td>
+<td id="T_b1efd_row0_col0" class="data row0 col0">0%</td>
+<td id="T_b1efd_row0_col1" class="data row0 col1">24%</td>
+<td id="T_b1efd_row0_col2" class="data row0 col2">23%</td>
 </tr>
 <tr class="even">
-<td id="T_88a9f_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Color__YELLOW</td>
-<td id="T_88a9f_row1_col0" class="data row1 col0">0%</td>
-<td id="T_88a9f_row1_col1" class="data row1 col1">26%</td>
-<td id="T_88a9f_row1_col2" class="data row1 col2">26%</td>
+<td id="T_b1efd_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Color__YELLOW</td>
+<td id="T_b1efd_row1_col0" class="data row1 col0">0%</td>
+<td id="T_b1efd_row1_col1" class="data row1 col1">26%</td>
+<td id="T_b1efd_row1_col2" class="data row1 col2">26%</td>
 </tr>
 <tr class="odd">
-<td id="T_88a9f_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Size__LARGE</td>
-<td id="T_88a9f_row2_col0" class="data row2 col0">0%</td>
-<td id="T_88a9f_row2_col1" class="data row2 col1">24%</td>
-<td id="T_88a9f_row2_col2" class="data row2 col2">23%</td>
+<td id="T_b1efd_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Size__LARGE</td>
+<td id="T_b1efd_row2_col0" class="data row2 col0">0%</td>
+<td id="T_b1efd_row2_col1" class="data row2 col1">24%</td>
+<td id="T_b1efd_row2_col2" class="data row2 col2">23%</td>
 </tr>
 <tr class="even">
-<td id="T_88a9f_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">Size__SMALL</td>
-<td id="T_88a9f_row3_col0" class="data row3 col0">0%</td>
-<td id="T_88a9f_row3_col1" class="data row3 col1">26%</td>
-<td id="T_88a9f_row3_col2" class="data row3 col2">26%</td>
+<td id="T_b1efd_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">Size__SMALL</td>
+<td id="T_b1efd_row3_col0" class="data row3 col0">0%</td>
+<td id="T_b1efd_row3_col1" class="data row3 col1">26%</td>
+<td id="T_b1efd_row3_col2" class="data row3 col2">26%</td>
 </tr>
 <tr class="odd">
-<td id="T_88a9f_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">Action__DIP</td>
-<td id="T_88a9f_row4_col0" class="data row4 col0">15%</td>
-<td id="T_88a9f_row4_col1" class="data row4 col1">0%</td>
-<td id="T_88a9f_row4_col2" class="data row4 col2">0%</td>
+<td id="T_b1efd_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">Action__DIP</td>
+<td id="T_b1efd_row4_col0" class="data row4 col0">15%</td>
+<td id="T_b1efd_row4_col1" class="data row4 col1">0%</td>
+<td id="T_b1efd_row4_col2" class="data row4 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_88a9f_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">Action__STRETCH</td>
-<td id="T_88a9f_row5_col0" class="data row5 col0">11%</td>
-<td id="T_88a9f_row5_col1" class="data row5 col1">0%</td>
-<td id="T_88a9f_row5_col2" class="data row5 col2">0%</td>
+<td id="T_b1efd_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">Action__STRETCH</td>
+<td id="T_b1efd_row5_col0" class="data row5 col0">11%</td>
+<td id="T_b1efd_row5_col1" class="data row5 col1">0%</td>
+<td id="T_b1efd_row5_col2" class="data row5 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_88a9f_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">Age__ADULT</td>
-<td id="T_88a9f_row6_col0" class="data row6 col0">11%</td>
-<td id="T_88a9f_row6_col1" class="data row6 col1">0%</td>
-<td id="T_88a9f_row6_col2" class="data row6 col2">0%</td>
+<td id="T_b1efd_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">Age__ADULT</td>
+<td id="T_b1efd_row6_col0" class="data row6 col0">11%</td>
+<td id="T_b1efd_row6_col1" class="data row6 col1">0%</td>
+<td id="T_b1efd_row6_col2" class="data row6 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_88a9f_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">Age__CHILD</td>
-<td id="T_88a9f_row7_col0" class="data row7 col0">15%</td>
-<td id="T_88a9f_row7_col1" class="data row7 col1">0%</td>
-<td id="T_88a9f_row7_col2" class="data row7 col2">0%</td>
+<td id="T_b1efd_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">Age__CHILD</td>
+<td id="T_b1efd_row7_col0" class="data row7 col0">15%</td>
+<td id="T_b1efd_row7_col1" class="data row7 col1">0%</td>
+<td id="T_b1efd_row7_col2" class="data row7 col2">0%</td>
 </tr>
 <tr class="odd">
-<td id="T_88a9f_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">Inflated__F</td>
-<td id="T_88a9f_row8_col0" class="data row8 col0">17%</td>
-<td id="T_88a9f_row8_col1" class="data row8 col1">0%</td>
-<td id="T_88a9f_row8_col2" class="data row8 col2">0%</td>
+<td id="T_b1efd_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">Inflated__F</td>
+<td id="T_b1efd_row8_col0" class="data row8 col0">17%</td>
+<td id="T_b1efd_row8_col1" class="data row8 col1">0%</td>
+<td id="T_b1efd_row8_col2" class="data row8 col2">0%</td>
 </tr>
 <tr class="even">
-<td id="T_88a9f_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">Inflated__T</td>
-<td id="T_88a9f_row9_col0" class="data row9 col0">29%</td>
-<td id="T_88a9f_row9_col1" class="data row9 col1">0%</td>
-<td id="T_88a9f_row9_col2" class="data row9 col2">0%</td>
+<td id="T_b1efd_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">Inflated__T</td>
+<td id="T_b1efd_row9_col0" class="data row9 col0">29%</td>
+<td id="T_b1efd_row9_col1" class="data row9 col1">0%</td>
+<td id="T_b1efd_row9_col2" class="data row9 col2">0%</td>
 </tr>
 </tbody>
 </table>
@@ -4446,7 +4446,7 @@ position: relative;
 </section>
 <section id="se-procede-a-ver-el-coseno-de-las-similiridades" class="level2">
 <h2 class="anchored" data-anchor-id="se-procede-a-ver-el-coseno-de-las-similiridades">Se procede a ver el coseno de las similiridades</h2>
-<div id="6331f389" class="cell" data-execution_count="22">
+<div id="f890e20e" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mca.row_cosine_similarities(X).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
@@ -4465,25 +4465,25 @@ position: relative;
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>0.461478</td>
-<td>6.474654e-29</td>
+<td>1.396665e-28</td>
 <td>0.533786</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>0.152256</td>
-<td>2.744861e-29</td>
+<td>9.111747e-29</td>
 <td>0.399316</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>0.152256</td>
-<td>7.781565e-29</td>
+<td>1.256860e-28</td>
 <td>0.399316</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>0.653335</td>
-<td>3.638170e-29</td>
+<td>7.874709e-29</td>
 <td>0.284712</td>
 </tr>
 <tr class="odd">
@@ -4498,7 +4498,7 @@ position: relative;
 </div>
 </div>
 </div>
-<div id="4b43dbe7" class="cell" data-execution_count="23">
+<div id="06d563fe" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mca.column_cosine_similarities(X).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
@@ -4541,7 +4541,7 @@ position: relative;
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Action__DIP</td>
 <td>0.530243</td>
-<td>9.870958e-31</td>
+<td>2.344831e-32</td>
 <td>0.004578</td>
 </tr>
 </tbody>
