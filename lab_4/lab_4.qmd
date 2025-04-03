@@ -1,0 +1,287 @@
+---
+title: Laboratorio 3 CA0411
+date: today
+date-format: short
+author: Joshua Cervantes Artavia
+theme: Cerulean
+format:
+  html:
+    embed-resources: true
+---
+
+
+# Descripción del laboratorio 
+
+En este labotario vamos a aplicar un análisis factorial de correspondencias y un análisis de correspondecias múltiples. Para ello vamos a hacer uso de una librería que se llama `prince` y que nos permitiría obtener muchos de los índices que se han visto en clase.
+
+Se puede revisar la teoría en este link.
+
+Para instalarlo lo hacemos de la siguiente manera
+
+
+
+## Mac
+
+Se descarga Python 3 desde el siguiente link [Python3](https://www.python.org/downloads/release/python-3132/)
+
+
+En la consola se escriben los siguientes comandos:
+
+```{console}
+$ python3 -m pip install prince
+```
+
+Si se tiene un chip MX seguir la siguiente guía para que funcione lightgbm [instalar lightgbm MX](https://medium.com/@erensahin/how-to-install-lightgbm-on-apple-m1-processors-in-2023-4ba59207d6c7)
+
+## Linux
+En este caso se muestra la forma de instalarlo en derivados de Debian. En la consola se escriben los siguientes comandos:
+
+```{console}
+$ sudo apt-get update 
+$ sudo apt-get upgrade 
+$ sudo apt-get install python3-pip
+$ pip install prince
+```
+
+
+## Windows
+
+Se descarga Python 3 desde el siguiente link [Python3](https://www.python.org/downloads/release/python-3132/). Se añade Python a las variables del ambiente ver siguiente enlace [añadir python windows](https://www.youtube.com/watch?v=oa7YR5GpJ0A). En la consola se instalan los paquetes. 
+
+```{console}
+$ python -m pip install prince
+```
+
+
+Se cargan los paquetes
+
+```{python}
+import pandas as pd
+import numpy as np 
+import matplotlib.pyplot as plt
+import seaborn as sns
+import prince
+```
+
+# Ejemplo de el colegio y escogencia de la universidad
+
+## Carga de datos
+```{python}
+df_colegios = pd.read_excel("./data/lab_3.xlsx", index_col=[0])
+df_colegios
+```
+
+
+Procedemos a generar el objeto a partir de clase que programamos
+```{python}
+
+ca = prince.CA(
+  n_components=3,
+    n_iter=3,
+    copy=True,
+    check_input=True,
+    engine='sklearn',
+    random_state=42
+)
+# df_colegios.columns = pd.MultiIndex.from_tuples([(col, '') for col in df_colegios.columns])  # Convert columns to MultiIndex
+# print(isinstance(df_colegios.columns, pd.MultiIndex))
+# grupos = list(df_colegios.columns.levels[0])  # Extract top-level group names
+
+ca = ca.fit(
+    df_colegios
+)
+
+```
+
+
+
+## Vemos los autovalores
+```{python}
+ca.eigenvalues_summary
+```
+
+## Coordenadas
+```{python}
+ca.row_coordinates(df_colegios)
+```
+
+```{python}
+ca.column_coordinates(df_colegios)
+
+```
+
+## Visualización
+```{python}
+ca.plot(
+    df_colegios,
+    # x_component=0,
+    # y_component=1,
+    # show_column_markers=True,
+    # show_row_markers=True,
+    # show_column_labels=False
+
+    show_row_markers=True,
+    show_row_labels=True,
+    show_column_labels=True,
+    show_column_markers=True
+
+)
+
+```
+
+## Contribuciones
+```{python}
+ca.row_contributions_.style.format('{:.0%}')
+```
+
+
+```{python}
+ca.column_contributions_.style.format('{:.0%}')
+```
+
+
+
+## Coseno similaridades
+```{python}
+ca.row_cosine_similarities(df_colegios)
+
+```
+
+
+```{python}
+ca.column_cosine_similarities(df_colegios)
+
+```
+
+# Ejemplo de globos (Análisis de correspondencias múltiples)
+
+Se procede a cargar los datos. Si se está usando Mac puede ser necesario instalar certificados de acceso esto se logra de yendo `/Applications/Python 3.X` y se debe ejecutar el archivo `Install Certificates.command`
+
+```{python}
+
+X = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/balloons/adult+stretch.data')
+X.columns = ['Color', 'Size', 'Action', 'Age', 'Inflated']
+
+
+
+X.head()
+```
+
+
+Vemos que es una tabla donde viene el color del globo, el tamaño, la acción, la edad y si está inflado. 
+
+Veamos que entonces tenemos solo variables cualitativas. Si aplicamos el comando describe obtenemos lo siguiente
+
+```{python}
+X.describe()
+
+```
+
+
+
+- Observamos que en este caso se tienen 19 individuos. 
+- Para los colores vemos que existen dos colores diferentes que son morado (purple) y amarillo (yellow). Siendo la mayor clase morado con 10 individuos.
+- En el caso del tamaño el mayor es largo con 10 y existen 2 dos diferentes.
+- En cuanto a acción se encuentra estrechar como el de mayor frecuencia con 11 y una vez más se encuentran dos clases diferentes.
+- La edad adulto tiene la mayor frecuencia. 
+- Y la mayoría se encuentran desinflados. 
+
+
+Se procede a generar el objeto para el análisis de correspondecias múltiples.
+
+```{python}
+mca = prince.MCA(n_components=3, correction= None)
+
+```
+
+
+Procedemos a ajustar el modelo
+```{python}
+mca = mca.fit(X) # same as calling ca.fs_r(1)
+#mca = mca.transform(X)
+
+```
+
+
+Lo anterior son la coordenadas de los perfiles fila. 
+
+También podemos hacer
+```{python}
+mca.row_coordinates(X)
+```
+
+Si quisieramos ver las coordenadas de los perfiles columna podemos hacer
+
+```{python}
+mca.column_coordinates(X)
+
+```
+
+
+## Análisis de la inercia
+```{python}
+mca.eigenvalues_summary
+
+```
+
+
+## Gráfico
+
+Podemos realizar la proyección de una manera sencilla de la siguiente manera
+
+
+```{python}
+mca.plot(
+    X,
+    # x_component=0,
+    # y_component=1,
+    # show_column_markers=True,
+    # show_row_markers=True,
+    # show_column_labels=False
+
+    show_row_markers=True,
+    show_row_labels=False,
+    show_column_labels=True,
+    show_column_markers=False
+
+)
+
+
+```
+
+## Contribuciones 
+
+Se ve la contribución de las filas a las componentes mediante el siguiente comando.
+
+```{python}
+mca.row_contributions_.style.format('{:.0%}')
+
+```
+
+
+
+Se ve la contribución de las columnas a las componentes mediante el siguiente comando.
+
+```{python}
+mca.column_contributions_.style.format('{:.0%}')
+
+```
+
+
+
+## Se procede a ver el coseno de las similiridades
+
+
+```{python}
+mca.row_cosine_similarities(X).head()
+
+```
+
+
+```{python}
+mca.column_cosine_similarities(X).head()
+
+```
+
+
+
