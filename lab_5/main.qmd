@@ -1,0 +1,414 @@
+---
+title: "Laboratorio 5"
+author: "Joshua Cervantes"
+date: "`r Sys.Date()`"
+theme: Cerulean
+format:
+    html:
+        self-contained: true
+        embed-resources: true
+execute:
+    echo: true
+    warning: false
+    error: false
+    freeze: auto
+    python: python3
+---
+
+
+```{python}
+# Se procede a importar los paquetes
+import pandas as pd
+import numpy as np
+from cod.ejercicio import ejercicio_1 as ej1
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
+
+
+# Ejercicio 1
+
+## Notas escolares
+
+```{python}
+df_notas = pd.read_csv("./data/NotasEscolares.csv")
+
+```
+
+
+
+Se procede a llamar la clase que programamos 
+```{python}
+notas_escolares_kmeans = ej1(df_notas.drop(["Estudiante"], axis = 1))
+
+```
+
+### 3 cluster
+Hacemos el multistart con 3 clases
+```{python}
+
+notas_ms_3 = notas_escolares_kmeans.kmeans_multistart(3, 1000)
+
+```
+
+
+```{python}
+notas_ms_3["mejor_inercia"]
+```
+
+
+La mejor inercia es inferior a 9. 
+
+```{python}
+notas_ms_3["tau"]
+```
+
+En cuanto a la tasa de atracción en este caso observamos que inferior al 15. 
+
+
+```{python}
+notas_escolares_kmeans.plot_comportamiento_tiempos()
+```
+
+Los tiempos se encuentran realmente bajos siendo inferiores al segundo. 
+
+
+```{python}
+notas_escolares_kmeans.plot_comportamiento_locales()
+```
+
+
+Se puede observar que la inercia en la mayoría de los casos se ubica poder debajo de 10. Aunque hay casos en los que la inercia queda realmente alta. 
+
+
+
+```{python}
+notas_ms_3["iteraciones_promedio"]
+
+```
+
+
+Se puede obsevar que en esta tabla de datos cada multistart en promedio converge rápidamente.
+
+```{python}
+notas_escolares_kmeans.elbow()
+
+```
+
+### 4 cluster
+
+Hacemos el multistart con 4 clases
+```{python}
+
+notas_ms_4 = notas_escolares_kmeans.kmeans_multistart(4, 1000)
+
+```
+
+
+```{python}
+notas_ms_4["mejor_inercia"]
+```
+
+Se puede observar que la inercia obtenida en este caso es inferior al caso anterio como es de esperar dado que a mayor clases la inercia intraclase disminuye. 
+
+```{python}
+notas_ms_4["tau"]
+```
+La tasa de atracción en este caso es mucho menor que en el caso anterior esto dado a que existe una mayor cantidad de combinaciones que se pueden hacer. 
+
+
+
+```{python}
+notas_escolares_kmeans.plot_comportamiento_tiempos()
+```
+
+
+Los tiempos son mucho menores, esto está relacionado con que es más fácil encontrar un óptimo al permitirse una mayor cantidad de casos. 
+
+```{python}
+notas_escolares_kmeans.plot_comportamiento_locales()
+```
+
+La inercia se comporta muy similar al caso anterior siendo inferior a 10, pero sí se nota que es mucho menor en general. 
+
+```{python}
+notas_ms_4["iteraciones_promedio"]
+
+```
+
+Se disminuye el número de iteraciones.
+
+
+## Peces de Amiard
+
+```{python}
+df_peces = pd.read_excel("./data/Amiard.xls", skiprows=1)
+```
+
+
+```{python}
+peces_kmeans = ej1(df_peces.drop(["Pez"], axis = 1))
+
+```
+
+### 3 cluster
+
+Hacemos el multistart con 3 clases
+```{python}
+
+peces_ms_3 = peces_kmeans.kmeans_multistart(3, 1000)
+
+```
+
+
+```{python}
+peces_ms_3["mejor_inercia"]
+```
+
+
+```{python}
+peces_ms_3["tau"]
+```
+
+
+
+
+```{python}
+peces_kmeans.plot_comportamiento_tiempos()
+```
+
+En este caso se puede observar que los tiempos varian más que en el ejemplo de las notas, esto está relacionado con que hay una mayor cantidad de individuos lo que genera mayor tiempo de ejecución y además afecta el rendimiento del procesador donde pueden haber ejecuciones más prolongadas. 
+
+```{python}
+peces_kmeans.plot_comportamiento_locales()
+```
+
+En este caso también se ubica una mayor variabilidad en la distirbución de las inercias. Se observa que existen claramente valores los cuales se repiten más alrededor de 180 y 190.
+
+
+```{python}
+peces_ms_3["iteraciones_promedio"]
+
+```
+
+Aquí en comparación con el ejercicio anterior existen más iteraciones en promedio. 
+
+
+### 4 cluster
+
+Hacemos el multistart con 4 clases
+```{python}
+
+peces_ms_4 = peces_kmeans.kmeans_multistart(4, 1000)
+
+```
+
+
+```{python}
+peces_ms_4["mejor_inercia"]
+```
+
+La inercia es mejor en este caso como es de esperarse. 
+
+```{python}
+peces_ms_4["tau"]
+```
+
+
+La tasa de atracción en este caso es mucho menor dado que existe una mayor cantidad de combinaciones. 
+
+```{python}
+peces_kmeans.plot_comportamiento_tiempos()
+```
+
+
+El tiempo de ejecución presenta una mayor cantidad de valores superiores a los mostrados en el ejemplo anterior en general. 
+
+```{python}
+peces_kmeans.plot_comportamiento_locales()
+```
+
+
+
+```{python}
+peces_ms_4["iteraciones_promedio"]
+
+```
+
+
+
+
+```{python}
+peces_kmeans.elbow()
+
+```
+
+En este caso existe una menor cantidad de iteraciones. 
+
+## Iris
+
+```{python}
+from sklearn import datasets
+
+iris = datasets.load_iris()
+iris = pd.DataFrame(data= np.c_[iris['data'], iris['target']],columns= iris['feature_names'] + ['target'])
+```
+
+
+
+
+```{python}
+iris_kmeans = ej1(iris.drop(["target"], axis = 1))
+
+```
+
+### 3 cluster
+
+Hacemos el multistart con 3 clases
+```{python}
+
+iris_ms_3 = iris_kmeans.kmeans_multistart(3, 1000)
+
+```
+
+
+```{python}
+iris_ms_3["mejor_inercia"]
+```
+
+
+```{python}
+iris_ms_3["tau"]
+```
+
+
+
+
+```{python}
+iris_kmeans.plot_comportamiento_tiempos()
+```
+
+
+```{python}
+iris_kmeans.plot_comportamiento_locales()
+```
+
+
+Se puede observar que la mayoría de los óptimo se ubican alrededor de 140. 
+
+
+```{python}
+iris_ms_3["iteraciones_promedio"]
+
+```
+
+
+
+
+### 4 cluster
+
+Hacemos el multistart con 4 clases
+```{python}
+
+iris_ms_4 = iris_kmeans.kmeans_multistart(4, 1000)
+
+```
+
+
+```{python}
+iris_ms_4["mejor_inercia"]
+```
+
+La inercia mejora como es de esperarse.
+
+```{python}
+iris_ms_4["tau"]
+```
+
+Vemos que en este caso la tasa de atracción disminuye.
+
+
+
+
+```{python}
+iris_kmeans.plot_comportamiento_tiempos()
+```
+
+
+```{python}
+iris_kmeans.plot_comportamiento_locales()
+```
+
+
+
+```{python}
+iris_ms_4["iteraciones_promedio"]
+
+```
+
+
+```{python}
+iris_kmeans.elbow()
+
+```
+
+En este caso el número de iteraciones aumenta.
+
+# Ejercicio 2
+```{python}
+from scipy.cluster.hierarchy import dendrogram #Para hacer el dendongram
+
+from sklearn.cluster import AgglomerativeClustering #Esto permite hace clusterizacion jerarquica
+
+from cod.ejercicio import plot_dendrogram
+```
+
+## Estudiante
+```{python}
+mdl_iris_agg = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+
+
+mdl_iris_agg = mdl_iris_agg.fit(df_notas.drop(["Estudiante"], axis = 1))
+
+plt.title("Hierarchical Clustering Dendrogram")
+# plot the top three levels of the dendrogram
+plot_dendrogram(mdl_iris_agg, truncate_mode="level", p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+
+```
+
+
+```{python}
+
+mdl_iris_agg = AgglomerativeClustering(distance_threshold=0, n_clusters=None, linkage="average")
+
+
+mdl_iris_agg = mdl_iris_agg.fit(df_notas.drop(["Estudiante"], axis = 1))
+
+plt.title("Hierarchical Clustering Dendrogram")
+# plot the top three levels of the dendrogram
+plot_dendrogram(mdl_iris_agg, truncate_mode="level", p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+
+
+```
+
+
+
+```{python}
+
+mdl_iris_agg = AgglomerativeClustering(distance_threshold=0, n_clusters=None, linkage="complete")
+
+
+mdl_iris_agg = mdl_iris_agg.fit(df_notas.drop(["Estudiante"], axis = 1))
+
+plt.title("Hierarchical Clustering Dendrogram")
+# plot the top three levels of the dendrogram
+plot_dendrogram(mdl_iris_agg, truncate_mode="level", p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+
+
+```
