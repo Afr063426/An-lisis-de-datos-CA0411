@@ -1,0 +1,319 @@
+---
+title: "Laboratorio 7"
+author: "Joshua Cervantes, Daniel Sabater y Moisés Monge"
+date: "`r Sys.Date()`"
+theme: Cerulean
+format:
+    html:
+        self-contained: true
+        embed-resources: true
+execute:
+    echo: true
+    warning: false
+    error: false
+    freeze: auto
+    python: python3
+---
+
+```{python importa_librerias}
+from sklearn.datasets import load_iris
+import pandas as pd
+import numpy as np
+from sklearn import tree
+from cod.modelo_prediccion import ModeloPrediccion
+from tabulate import tabulate
+import matplotlib.pyplot as plt
+```
+
+
+# Iris
+```{python}
+#Se procede a cargar la tabla de iris
+iris = load_iris()
+X, y = iris.data, iris.target
+
+```
+
+
+Se procede a utilizar la clase que fue entrenada anteriormente
+```{python}
+mdl_tree_n_cal = ModeloPrediccion(X, y)
+mdl_tree_n_cal.split_data()
+mdl_tree_n_cal.train_model(tree.DecisionTreeClassifier(), param_distributions=dict())
+
+```
+
+
+
+
+```{python}
+mdl_tree_n_cal.predict(mdl_tree_n_cal.X_test, probabilities = True)[1:3]*100
+```
+
+```{python}
+from scipy.stats import randint, uniform
+param_distributions = dict(
+    max_depth = randint(1, 4),
+    ccp_alpha = uniform()
+)
+mdl_tree_cal = ModeloPrediccion(X, y)
+mdl_tree_cal.split_data()
+mdl_tree_cal.train_model(tree.DecisionTreeClassifier(), param_distributions=param_distributions)
+
+```
+
+
+
+
+
+```{python}
+mdl_tree_cal.predict(mdl_tree_cal.X_test, probabilities = True)[1:3]*100
+```
+
+
+
+
+
+```{python}
+#Se procede a evaluar el modelo
+print("Sin calibrar")
+print(mdl_tree_n_cal.evaluate_model())
+print("Calibrado")
+print(mdl_tree_cal.evaluate_model())
+```
+
+
+```{python}
+plt.figure()
+tree.plot_tree(mdl_tree_n_cal.model)
+plt.show()
+```
+
+
+```{python}
+plt.figure()
+tree.plot_tree(mdl_tree_cal.model)
+plt.show()
+```
+
+
+
+# Veamos un caso de scoring de credito
+
+
+Estos datos corresponde a un banco de Alemania del cual desconocemos el nombre para más detalles se puede revisar una de las bitácoras que les compartí anteriormente
+
+```{python}
+df_scoring = pd.read_csv("./data/scoring.csv")
+df_scoring["Default"] = df_scoring["Default"].astype("category")
+df_scoring = df_scoring.iloc[:, 1:]
+# Se ponen en formato categoria 
+df_scoring.head()
+```
+
+
+Se procede a hacer un analisis exploratorio de los datos
+
+
+```{python}
+data_2=df_scoring[['Duracion','Edad','Monto','Tiempo_trabajando']]
+
+summary_2=data_2.describe().transpose()
+summary_2=summary_2.loc[:,summary_2.columns!='count']
+
+
+
+print(tabulate(summary_2,headers='keys',tablefmt='latex_longtable'))
+
+```
+
+```{python}
+datosG1 = df_scoring.loc[:, ["Monto", "Default"]]
+datosG2 = [datosG1[datosG1["Default"]==1].Monto, datosG1[datosG1["Default"]==0].Monto]
+fig, (ax1) = plt.subplots(nrows=1, ncols=1, figsize=(20, 4))
+
+# rectangular box plot
+bplot1 = ax1.boxplot(datosG2,
+                     vert=False,  # vertical box alignment
+                     patch_artist=True,  # fill with color
+                     labels=["Incumplió", "Cumplió"],
+                     widths=(0.75, 0.75))  # will be used to label x-ticks
+
+# Add some text for labels, title and custom x-axis tick labels, etc.                
+#ax1.set_ylabel('Condición del prestamo')
+ax1.set_xlabel('Monto del préstamo')
+# fill with colors
+for patch, color in zip(bplot1['boxes'], [ '#FF6103', '#03A89E']):
+        patch.set_facecolor(color)
+
+#plt.savefig('montos.pdf', bbox_inches='tight')
+plt.show()
+
+```
+
+
+```{python}
+datosG1 = df_scoring.loc[:, ["Proposito", "Default"]]
+datosG1[datosG1["Default"]==1]
+labels = [
+    "Otros",
+    "Carro nuevo",
+    "Carro usado",
+    "Muebles/equipamento",
+    "Radio/televisión",
+    "Ampliación del hogar",
+    "Reparaciones",
+    "Educación",
+    "Vacaciones",
+    "Reentrenamiento",
+    "Trabajo"
+]
+
+eje1=np.unique(datosG1[datosG1["Default"]==1].Proposito, return_counts=True)
+eje2=np.unique(datosG1[datosG1["Default"]==0].Proposito, return_counts=True)
+x = np.arange(len(labels))  # the label locations
+width = 0.35  # the width of the bars
+
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(17, 5))
+rects1 = ax.bar(eje1[0]- width/2 ,eje1[1], width, label='Cumplió', color=[ "#03A89E"])
+rects2 = ax.bar(eje2[0]+ width/2, eje2[1], width, label='Incumplió', color=["#FF6103"])
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Cantidad de préstamos')
+ax.set_xlabel('Propósito del préstamo')
+#ax.set_title('Distribución de los motivos por los cuales se solicita un crédito')
+ax.set_xticks(x)
+ax.set_xticklabels(labels)
+ax.legend()
+
+def autolabel(rects):
+    """Attach a text label above each bar in *rects*, displaying its height."""
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+
+autolabel(rects1)
+autolabel(rects2)
+
+
+fig.tight_layout()
+
+#plt.savefig('Proposito.pdf', bbox_inches='tight')
+plt.show()
+
+
+```
+
+
+```{python}
+color=["#03A89E","#FF6103"]
+
+
+pd.DataFrame({'Incumplió': df_scoring.groupby('Default').get_group(0).Edad,'Cumplió':   df_scoring.groupby('Default').get_group(1).Edad}).plot.hist(stacked=True, color = color).axes.get_xaxis()
+plt.xlabel("Edad")
+plt.ylabel("Frecuencia")
+plt.savefig('AgeDistribution.eps', format='eps')
+plt.show()
+
+
+```
+
+
+```{python}
+pd.DataFrame({'Incumplió': df_scoring.groupby('Default').get_group(0).Duracion,'Cumplió':   df_scoring.groupby('Default').get_group(1).Duracion}).plot.hist(stacked=True, color = color)
+plt.xlabel("Duración del préstamo (en meses)")
+plt.ylabel("Frecuencia")
+plt.savefig('DurationDistribution.eps', format='eps')
+plt.show()
+
+
+```
+
+Posterior a esto procedemos a entrenar el modelo
+
+```{python}
+X, y = df_scoring.drop(["Default"], axis = 1), df_scoring["Default"]
+mdl_tree_scoring = ModeloPrediccion(X, y)
+mdl_tree_scoring.split_data()
+mdl_tree_scoring.train_model(tree.DecisionTreeClassifier(), param_distributions=dict())
+
+
+```
+
+
+```{python}
+mdl_tree_scoring.plot_roc_curve()
+```
+
+
+```{python}
+from scipy.stats import randint, uniform
+param_distributions = dict(
+    max_depth = randint(1, 5),
+    ccp_alpha = uniform()
+)
+mdl_tree_scoring_cal = ModeloPrediccion(X, y)
+mdl_tree_scoring_cal.split_data()
+mdl_tree_scoring_cal.train_model(tree.DecisionTreeClassifier(), param_distributions=param_distributions)
+```
+
+
+```{python}
+mdl_tree_scoring_cal.plot_roc_curve()
+```
+
+
+```{python}
+param_distributions = dict(
+    max_depth = randint(1, 5),
+    ccp_alpha = uniform()
+)
+mdl_tree_scoring_f1 = ModeloPrediccion(X, y)
+mdl_tree_scoring_f1.split_data()
+mdl_tree_scoring_f1.train_model(tree.DecisionTreeClassifier(), param_distributions=param_distributions, scoring = "f1_weighted")
+```
+
+
+```{python}
+mdl_tree_scoring_f1.plot_roc_curve()
+```
+
+
+```{python}
+#Se procede a evaluar el modelo
+print("Sin calibrar")
+print(mdl_tree_scoring.evaluate_model())
+print("Calibrado")
+print(mdl_tree_scoring_cal.evaluate_model())
+print("F1 Score")
+print(mdl_tree_scoring_f1.evaluate_model())
+```
+
+
+```{python No calibrado}
+# Assuming clf is your fitted DecisionTreeClassifier
+plt.figure()
+tree.plot_tree(mdl_tree_scoring.model)
+plt.show()  # This ensures the plot is rendered, and no raw text is returned
+```
+
+
+```{python Calibrado}
+# Assuming clf is your fitted DecisionTreeClassifier
+plt.figure()
+tree.plot_tree(mdl_tree_scoring_cal.model)
+plt.show()  # This ensures the plot is rendered, and no raw text is returned
+```
+
+
+```{python Calibrado}
+# Assuming clf is your fitted DecisionTreeClassifier
+plt.figure()
+tree.plot_tree(mdl_tree_scoring_f1.model)
+plt.show()  # This ensures the plot is rendered, and no raw text is returned
+```
